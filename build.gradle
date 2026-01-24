@@ -48,6 +48,19 @@ group = project.property('project-group')
 
 repositories {
     mavenCentral()
+    maven {
+        url = uri("https://maven.pkg.github.com/MCEngine/mcextension")
+        credentials {
+            // Priority: Project Property -> Custom Env Var -> GitHub Default Env Var
+            username = project.findProperty("gpr.user") ?: 
+                       System.getenv("USER_GITHUB_NAME") ?: 
+                       System.getenv("GITHUB_ACTOR")
+                       
+            password = project.findProperty("gpr.key") ?: 
+                       System.getenv("USER_GITHUB_TOKEN") ?: 
+                       System.getenv("GITHUB_TOKEN")
+        }
+    }
     // Swapped PaperMC for SpigotMC
     maven {
         name = 'spigotmc'
@@ -61,6 +74,8 @@ repositories {
 }
 
 dependencies {
+    // Adds MCExtension as a compile-time only dependency
+    compileOnly 'io.github.mcengine:mcextension:2026.0.2-5-18-DEV'
     // Spigot API
     compileOnly 'org.spigotmc:spigot-api:1.21.11-R0.2-SNAPSHOT'
 }
