@@ -18,27 +18,18 @@ boolean isDevRealeaseBuild = (devRelease != null && !devRelease.isEmpty())
 String calculatedVersion = "unspecified"
 
 if (releaseTag != null && !releaseTag.isEmpty()) {
-    // RELEASE STRATEGY:
-    // If a tag exists (e.g., "v2026.0.0" or "v2026.0.0-1"), use it directly but strip the "v".
-    // Result: "2026.0.0" or "2026.0.0-1"
+    // RELEASE: yyyy.m.m
     calculatedVersion = releaseTag.replace("v", "")
 } else if (project.hasProperty('project-version')) {
-    // DEV STRATEGY:
     def baseVersion = project.property('project-version')
-    def iteration = project.hasProperty('project-iteration') ? project.property('project-iteration') : "1"
-    
-    if (isDevBuild && !isDevRealeaseBuild) {
-        // CI Dev Build: "2026.0.0-1-9-DEV"
-        // Format: {Version}-{Iteration}-{BuildNum}-DEV
-        calculatedVersion = "${baseVersion}-${iteration}-${buildNum}-DEV"
-    } else if (isDevRealeaseBuild) {
-        // CI Dev Release Build: "2026.0.0-1"
-        // Format: {Version}-{Iteration}
-        calculatedVersion = "${baseVersion}-${iteration}"
+    def iteration = project.findProperty('project-iteration') ?: "1"
+
+    if (isDevBuild || isDevRealeaseBuild) {
+        // CI: yyyy.m.m-build.{number}
+        calculatedVersion = "${baseVersion}-build.${buildNum}"
     } else {
-        // Local Build: "2026.0.0-1-SNAPSHOT"
-        // Format: {Version}-{Iteration}-SNAPSHOT
-        calculatedVersion = "${baseVersion}-${iteration}-SNAPSHOT"
+        // LOCAL: yyyy.m.m-{iteration}
+        calculatedVersion = "${baseVersion}-${iteration}"
     }
 }
 
