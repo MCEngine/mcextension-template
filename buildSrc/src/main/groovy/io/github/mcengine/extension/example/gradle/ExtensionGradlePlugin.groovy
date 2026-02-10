@@ -1,4 +1,4 @@
-package io.github.mcengine.extension.gradle
+package io.github.mcengine.extension.example.gradle
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
