@@ -44,6 +44,30 @@ And the **PaperMC API**:
 - `src/main/resources/extension.yml`
   - Declares the extension `name`, `version`, and `main` class
 
+## extension.yml configuration
+
+The `extension.yml` file defines how your extension is loaded:
+
+```yaml
+# The unique identifier for this extension
+name: ExampleExt
+# The version of this extension
+version: 1.0.0
+# The full package path to your main class
+main: io.github.mcengine.extension.example.ExampleExtension
+
+# Optional: Ensure MCEconomy is loaded first
+base:
+  depend: [MCEconomy]
+```
+
+### Configuration options
+
+- **name**: Unique identifier for your extension (required)
+- **version**: Extension version string (required)  
+- **main**: Fully qualified class name of your main extension class (required)
+- **base.depend**: List of extensions that must be loaded before this one (optional)
+
 ## Build
 
 Run:
