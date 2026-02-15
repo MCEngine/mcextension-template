@@ -1,11 +1,10 @@
-# The unique identifier for this extension
-name: ExampleExt
-# The version of this extension
-version: 1.0.0
-# The full package path to your main class
-main: io.github.mcengine.extension.example.ExampleExtension
+name: "MyExtension"
+version: "1.0.0"
+main: "io.github.mcengine.MyExtension"
 
-# Optional: Ensure MCEconomy is loaded first
-base:
-  depend: [MCEconomy]
-  
+extension:
+  depend: [OtherExtID]
+git:
+  provider: github
+  owner: my-org
+  repository: my-repo

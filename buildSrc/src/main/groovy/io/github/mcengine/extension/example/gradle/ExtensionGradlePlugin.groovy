@@ -50,7 +50,7 @@ class ExtensionGradlePlugin implements Plugin<Project> {
             url = 'https://oss.sonatype.org/content/groups/public/'
         }
 
-        project.dependencies.add('compileOnly', 'io.github.mcengine:mcextension:2026.0.3-1-SNAPSHOT')
+        project.dependencies.add('compileOnly', 'io.github.mcengine:mcextension:2026.0.3-3')
         project.dependencies.add('compileOnly', 'io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT')
 
         def gitOwner = project.property('git-org-name')
