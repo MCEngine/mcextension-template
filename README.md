@@ -49,24 +49,26 @@ And the **PaperMC API**:
 The `extension.yml` file defines how your extension is loaded:
 
 ```yaml
-# The unique identifier for this extension
-name: ExampleExt
-# The version of this extension
-version: 1.0.0
-# The full package path to your main class
-main: io.github.mcengine.extension.example.ExampleExtension
+name: "MyExtension"
+main: "io.github.mcengine.MyExtension"
+version: "1.0.0"
 
-# Optional: Ensure MCEconomy is loaded first
-base:
-  depend: [MCEconomy]
+extension:
+  depend: [OtherExtID]     # optional: other extensions required
+git:
+  provider: github         # or gitlab
+  owner: my-org            # repo owner/group
+  repository: my-repo      # repo name
+  # token omitted: resolved from env (USER_GITHUB_TOKEN / USER_GITLAB_TOKEN) or host plugin config git.token
 ```
 
 ### Configuration options
 
 - **name**: Unique identifier for your extension (required)
-- **version**: Extension version string (required)  
 - **main**: Fully qualified class name of your main extension class (required)
-- **base.depend**: List of extensions that must be loaded before this one (optional)
+- **version**: Extension version string (required)
+- **extension.depend**: List of extensions that must be loaded before this one (optional)
+- **git.provider/owner/repository**: Git hosting details for publishing (optional; tokens resolved from env/host config)
 
 ## Build
 
