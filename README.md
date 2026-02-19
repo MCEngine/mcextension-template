@@ -20,7 +20,7 @@ This project targets:
 <dependency>
   <groupId>io.github.mcengine</groupId>
   <artifactId>mcextension</artifactId>
-  <version>2026.0.3-3</version>
+  <version>2026.0.3-6</version>
 </dependency>
 ```
 
